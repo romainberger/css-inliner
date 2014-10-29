@@ -8,8 +8,9 @@ from converter import Conversion
 from optparse import OptionParser
 
 parser = OptionParser()
-parser.add_option("-f", "--file", dest="filename", help="Input file")
-parser.add_option("-c", "--css",  dest="css",      help="Css file")
+parser.add_option("-f", "--file",  dest="filename", help="Input file")
+parser.add_option("-c", "--css",   dest="css",      help="Css file")
+parser.add_option("-o", "--ouput", dest="output",   help="Output file")
 
 def main():
     (options, args) = parser.parse_args()
@@ -26,7 +27,12 @@ def main():
     converter = Conversion()
     converter.perform(document, document, css)
 
-    print converter.convertedHTML
+    if options.output is not None:
+        f = open(options.output, "w")
+        f.write(converter.convertedHTML)
+        f.close()
+    else:
+        print converter.convertedHTML
 
 if __name__ == '__main__':
     main()
