@@ -3,7 +3,6 @@
 # Example:
 # ./css-inliner.py -f index.html -c main.css
 
-import urllib
 from lxml import html
 from converter import Conversion
 from optparse import OptionParser
